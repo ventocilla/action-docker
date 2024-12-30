@@ -1,0 +1,26 @@
+name: "Inclue comentários (Docker)"
+description: "Essa action inclue comentários em issue ou PRs (Docker)"
+author: "Leonardo Ventocilla"
+inputs:
+  GITHUB_TOKEN:
+    description: "Token de acesso ao GitHub"
+    required: true
+  issue-id:
+    description: "ID da issue ou PR"
+    required: true
+  comment:
+    description: "Comentário a ser incluído"
+    required: true
+  GITHUB_REPOSITORY:
+    description: "Id do repositório"
+outputs:
+  comment-id:
+    description: "ID do comentário incluído"
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - '${{ inputs.GITHUB_TOKEN }}'
+    - '${{ inputs.issue }}'
+    - '${{ inputs.comment }}'
+    - '${{ inputs.GITHUB_REPOSITORY }}'
